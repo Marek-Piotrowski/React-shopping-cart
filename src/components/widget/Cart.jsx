@@ -1,13 +1,19 @@
-import cartLogo from '../../assets/supermarket-basket.svg'
+import React from 'react'
+import { FaTimes } from 'react-icons/fa';
 
-function Cart() {
+function Cart({setshowCart}) {
+
+const handleClose = () =>{
+    setshowCart(false)
+}
+
   return (
-    <div className='cart-conatiner'>
-      <div className="cart">
-        <img src={cartLogo} alt="Cart Logo" />
-      </div>
-      {/* dodaj/usun klase active aby widziec koszyk */}
-      <span className='cart-sum active'>1</span>
+    <div>
+        <FaTimes style={{width:"23px",height: "23px"}} onClick={handleClose}/>
+        <div>
+        Here will be your products listed.....
+        </div>
+
     </div>
   )
 }

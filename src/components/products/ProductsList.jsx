@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 
 
-function ProductsList() {
+function ProductsList({AddToCart}) {
 
   const [data, setData] = useState([])
 
@@ -30,12 +30,15 @@ function ProductsList() {
       <>
 
         { data.map(item => (<ProductItem
+        key={item.name}
         imageUrl={item.imageUrl}
         name={item.name}
         type={item.type}
         sensor={item.sensor}
         promotionalPrice={item.promotionalPrice}
         price={item.price}
+        isNew={item.isNew}
+        AddToCart={AddToCart}
 
         />))}
       </>

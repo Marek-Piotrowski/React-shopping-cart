@@ -1,12 +1,22 @@
 import cartLogo from '../../assets/supermarket-basket.svg'
 import Cart from './Cart'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function CartIcon() {
+function CartIcon({cartProducts,RemoveFromCart,SetcartProducts}) {
   const [showCart, setshowCart] = useState(false)
 
   const handleshowCart = () =>{
     setshowCart(true)
+  }
+
+  useEffect(()=>{
+    //totalQty()
+  },[cartProducts])
+
+  // show actual items quantity in the cart
+  const totalQty = ()=>{
+    const sum = cartProducts.reduce((a,v)=> a= a+v.qty,0)
+    return sum
   }
 
   return (
@@ -17,13 +27,18 @@ function CartIcon() {
           alt="Cart Logo"
           onClick={handleshowCart} />
         </div>
-        {/* dodaj/usun klase active aby widziec koszyk */}
-        <span className='cart-sum active'>1</span>
+        {cartProducts.length > 0 &&
+        <span className='cart-sum active'>{totalQty()}</span> }
 
       </div>
       {showCart &&
         <div className='cart-container'>
-          <Cart setshowCart={setshowCart}/>
+          <Cart
+          setshowCart={setshowCart}
+          cartProducts={cartProducts}
+          RemoveFromCart={RemoveFromCart}
+          SetcartProducts={SetcartProducts}
+          />
         </div>}
     </>
   )

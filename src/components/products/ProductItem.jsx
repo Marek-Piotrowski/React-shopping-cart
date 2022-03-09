@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { FaPlusCircle } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice,AddToCart}) {
 
@@ -30,12 +31,12 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice,Add
       onMouseLeave={handleMouseLeave}
     >
       {isNew && <div className="new-item">
-        Nowość!
+        New!
         </div>}
       <img src={imageUrl} alt="main" className="product-image" />
       <h4 className='product-title'>{name}</h4>
       <div className='product-info'>
-        <p>Typ myszki:</p>{type}
+        <p>Type:</p>{type}
       </div>
       <div className='product-sensor'>
         <p>Sensor:</p>{sensor}
@@ -43,15 +44,26 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice,Add
 
 
       <div className='product-price'>
-        {promotionalPrice && <div className="promo-price">{promotionalPrice} zł</div>}
-        <div className="regular-price">{price} zł</div>
+        {promotionalPrice && <div className="promo-price">{promotionalPrice} $</div>}
+        <div className="regular-price">{price} $</div>
       </div>
-      {showButton && <div className="add-to-cart" onClick={()=>AddToCart(product)}  >
+      {<div className={`${!showButton ? "add-to-cart": "add-to-cart show"}`} onClick={()=>AddToCart(product)}  >
         <FaPlusCircle style={{marginRight: "10px"}}/>
-        Dodaj do koszyka
+        Add to cart
       </div>}
     </div>
   )
+}
+
+ProductItem.propTypes = {
+  AddToCart: PropTypes.func.isRequired,
+  imageUrl:PropTypes.string.isRequired,
+  name:PropTypes.string.isRequired,
+  type:PropTypes.string.isRequired,
+  sensor:PropTypes.string.isRequired,
+  promotionalPrice:PropTypes.number,
+  price:PropTypes.number.isRequired,
+  isNew:PropTypes.bool.isRequired,
 }
 
 export default ProductItem

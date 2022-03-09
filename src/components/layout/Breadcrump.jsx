@@ -3,14 +3,14 @@
 function Breadcrump() {
   return (
     <div className="breadcrump">
-        PRODUKTY
+        PRODUCTS
         <hr className="line">
         </hr>
-        AKCESORIA
+        ACCESSORIES
         <hr className="line">
         </hr>
         <div className="textColor">
-            MYSZKI
+            MOUSES
         </div>
 
     </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaTruck } from 'react-icons/fa'
 import { useState,useEffect } from 'react'
+import PropTypes from 'prop-types';
 
 
 const BasketFooter = ({close,cartProducts}) => {
@@ -10,7 +11,7 @@ const BasketFooter = ({close,cartProducts}) => {
   useEffect(()=>{
     const sum = cartProducts.reduce((a,v)=> a=a+v.price *v.qty,0).toFixed(2)
     setTotalPrice(sum)
-    console.log("to jest suma z koszyka  "+ sum)
+    //console.log("this is from the cart  "+ sum)
   },[cartProducts])
 
   const handleClose = () =>{
@@ -22,20 +23,26 @@ const BasketFooter = ({close,cartProducts}) => {
         <div className='basket-wrapper'>
           <div className='basket-info' >
             <FaTruck style={{marginRight: "5px"}}/>
-            <span>Darmowa dostawa</span>
+            <span>Free Delivery</span>
           </div>
-          <span className='basket-return' onClick={handleClose}>wróć</span>
+          <span className='basket-return' onClick={handleClose}>Return</span>
         </div>
 
         <div className='basket-sum-price'>
           <div>
-             <span> {totalPrice} zł</span>
+             <span> {totalPrice} $</span>
           </div>
-          <button className='basket-pay-button'>opłać</button>
+          <button className='basket-pay-button'>Pay</button>
         </div>
 
     </div>
   )
+}
+
+BasketFooter.propTypes = {
+  cartProducts: PropTypes.array.isRequired,
+  close: PropTypes.func.isRequired,
+
 }
 
 export default BasketFooter

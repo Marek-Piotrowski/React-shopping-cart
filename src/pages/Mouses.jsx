@@ -9,7 +9,7 @@ function Mouses() {
 
 
   useEffect(()=>{
-    console.log(cartProducts)
+
   },[cartProducts])
 
   // Add to Cart
@@ -26,11 +26,7 @@ function Mouses() {
     SetcartProducts(
       cartProducts.filter(product => product.id !== id)
     )
-    //cartProducts.filter(product => product.id !== id)
-    //console.log(id)
   }
-
-
 
 
   return (

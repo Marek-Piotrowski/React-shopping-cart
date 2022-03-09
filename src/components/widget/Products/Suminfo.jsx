@@ -1,7 +1,7 @@
 
 const Suminfo = () => {
   return (
-    <div className="basket-info-summary">SUMA:</div>
+    <div className="basket-info-summary">TOTAL:</div>
   )
 }
 

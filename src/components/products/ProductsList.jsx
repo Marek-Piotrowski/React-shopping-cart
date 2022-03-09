@@ -1,6 +1,6 @@
 import ProductItem from "./ProductItem"
 import { useEffect, useState } from "react"
-
+import PropTypes from 'prop-types';
 
 
 
@@ -32,7 +32,7 @@ function ProductsList({AddToCart}) {
         { data.map(item => (<ProductItem
         key={item.name}
         imageUrl={item.imageUrl}
-        name={item.name}
+        name={item.name.substring(0,20)}
         type={item.type}
         sensor={item.sensor}
         promotionalPrice={item.promotionalPrice}
@@ -44,6 +44,10 @@ function ProductsList({AddToCart}) {
       </>
     </div>
   )
+}
+
+ProductsList.propTypes = {
+  AddToCart: PropTypes.func.isRequired,
 }
 
 export default ProductsList

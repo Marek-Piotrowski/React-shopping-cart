@@ -3,6 +3,7 @@ import { FaTimes } from 'react-icons/fa';
 import BasketFooter from './Footer/BasketFooter';
 import ProductTable from './Products/ProductTable';
 import Suminfo from './Products/Suminfo';
+import PropTypes from 'prop-types';
 
 
 function Cart({setshowCart,cartProducts,RemoveFromCart,SetcartProducts}) {
@@ -30,6 +31,14 @@ function Cart({setshowCart,cartProducts,RemoveFromCart,SetcartProducts}) {
 
     </div>
   )
+}
+
+Cart.propTypes = {
+  setshowCart: PropTypes.func.isRequired,
+  cartProducts: PropTypes.array.isRequired,
+  RemoveFromCart: PropTypes.func.isRequired,
+  SetcartProducts: PropTypes.func.isRequired
+
 }
 
 export default Cart

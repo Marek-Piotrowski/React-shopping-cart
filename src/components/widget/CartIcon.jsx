@@ -25,7 +25,7 @@ function CartIcon({cartProducts,RemoveFromCart,SetcartProducts}) {
   // show actual items quantity in the cart
   const totalQty = ()=>{
     const sum = cartProducts.reduce((a,v)=> a= a+v.qty,0)
-    return sum
+    return isNaN(sum) ? 0 : sum
   }
 
   return (

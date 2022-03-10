@@ -9,7 +9,7 @@ const BasketFooter = ({close,cartProducts}) => {
   const [totalPrice,setTotalPrice] = useState(0)
 
   useEffect(()=>{
-    const sum = cartProducts.reduce((a,v)=> a=a+v.price *v.qty,0).toFixed(2)
+    const sum = cartProducts.reduce((a,v)=> a=a+v.price *v.qty,0).toFixed(2).replace(/[.,]00/, "")
     setTotalPrice(sum)
     //console.log("this is from the cart  "+ sum)
   },[cartProducts])
@@ -30,7 +30,8 @@ const BasketFooter = ({close,cartProducts}) => {
 
         <div className='basket-sum-price'>
           <div>
-             <span> {totalPrice} $</span>
+            {/* if number is NaN display 0 */}
+             <span> {isNaN(totalPrice) ? 0 : totalPrice} $</span>
           </div>
           <button className='basket-pay-button'>Pay</button>
         </div>

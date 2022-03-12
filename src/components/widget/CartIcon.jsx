@@ -1,17 +1,14 @@
 import cartLogo from '../../assets/supermarket-basket.svg'
 import Cart from './Cart'
 import { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
+import { useContext } from "react"
+import { CartContext } from '../../context/CartContext/CartContext';
 
-function CartIcon({cartProducts,RemoveFromCart,SetcartProducts}) {
+function CartIcon() {
+
+  const {cartProducts} = useContext(CartContext)
   const [showCart, setshowCart] = useState(false)
 
-  //const cartRef = useRef(null)
-
-  // const style = {
-  //   transition: "transform 2s ease-in-out",
-  //   transform: `translate(0)`
-  // }
 
   const handleshowCart = () =>{
     setshowCart(!showCart)
@@ -46,20 +43,10 @@ function CartIcon({cartProducts,RemoveFromCart,SetcartProducts}) {
         >
           <Cart
           setshowCart={setshowCart}
-          cartProducts={cartProducts}
-          RemoveFromCart={RemoveFromCart}
-          SetcartProducts={SetcartProducts}
           />
         </div>}
     </>
   )
-}
-
-CartIcon.propTypes = {
-  cartProducts: PropTypes.array.isRequired,
-  RemoveFromCart: PropTypes.func.isRequired,
-  SetcartProducts: PropTypes.func.isRequired
-
 }
 
 export default CartIcon

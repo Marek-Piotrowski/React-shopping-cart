@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { FaPlusCircle } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { CartContext } from "../../context/CartContext/CartContext";
 
-function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice,AddToCart}) {
+function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
 
+  const {AddToCart} = useContext(CartContext)
   const [showButton, setShowButton] = useState(false)
   const [product, setProduct] = useState({
     imageUrl,
@@ -56,7 +58,6 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice,Add
 }
 
 ProductItem.propTypes = {
-  AddToCart: PropTypes.func.isRequired,
   imageUrl:PropTypes.string.isRequired,
   name:PropTypes.string.isRequired,
   type:PropTypes.string.isRequired,

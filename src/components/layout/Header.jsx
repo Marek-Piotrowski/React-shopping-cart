@@ -1,8 +1,7 @@
 import CartIcon from '../widget/CartIcon'
 import Logo from '../../assets/logo-black.svg'
-import PropTypes from 'prop-types';
 
-function Header({cartProducts,RemoveFromCart,SetcartProducts}) {
+function Header() {
 
   return (
     <header className='header'>
@@ -13,21 +12,11 @@ function Header({cartProducts,RemoveFromCart,SetcartProducts}) {
         height="50"
          />
       </h1>
-      <CartIcon
-      cartProducts={cartProducts}
-      RemoveFromCart={RemoveFromCart}
-      SetcartProducts={SetcartProducts}
-      />
+      <CartIcon/>
     </header>
 
   )
 }
 
-Header.propTypes = {
-  cartProducts: PropTypes.array.isRequired,
-  RemoveFromCart: PropTypes.func.isRequired,
-  SetcartProducts: PropTypes.func.isRequired
-
-}
 
 export default Header

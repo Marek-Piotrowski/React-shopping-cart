@@ -5,8 +5,7 @@ import ProductTable from './Products/ProductTable';
 import Suminfo from './Products/Suminfo';
 import PropTypes from 'prop-types';
 
-
-function Cart({setshowCart,cartProducts,RemoveFromCart,SetcartProducts}) {
+function Cart({setshowCart}) {
 
 
   const handleClose = () =>{
@@ -19,14 +18,10 @@ function Cart({setshowCart,cartProducts,RemoveFromCart,SetcartProducts}) {
         <div className='cart-close-icon'>
           <FaTimes style={{height:"30px",width:"30px"}} onClick={handleClose}/>
         </div>
-        <ProductTable cartProducts={cartProducts}
-        RemoveFromCart={RemoveFromCart}
-        SetcartProducts={SetcartProducts}
-        />
+        <ProductTable/>
         <Suminfo/>
         <BasketFooter
-        cartProducts={cartProducts}
-        close={setshowCart}
+        handleClose={handleClose}
          />
 
     </div>
@@ -35,10 +30,6 @@ function Cart({setshowCart,cartProducts,RemoveFromCart,SetcartProducts}) {
 
 Cart.propTypes = {
   setshowCart: PropTypes.func.isRequired,
-  cartProducts: PropTypes.array.isRequired,
-  RemoveFromCart: PropTypes.func.isRequired,
-  SetcartProducts: PropTypes.func.isRequired
-
 }
 
 export default Cart

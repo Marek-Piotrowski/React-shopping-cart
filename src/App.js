@@ -1,9 +1,12 @@
 import Mouses from "./pages/Mouses";
+import { CartProvider } from "./context/CartContext/CartContext";
 
 function App() {
   return (
     <div>
-      <Mouses />
+      <CartProvider>
+        <Mouses />
+      </CartProvider>
     </div>
   );
 }

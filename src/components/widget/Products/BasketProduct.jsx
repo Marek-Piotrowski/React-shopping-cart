@@ -1,31 +1,26 @@
 import { FaTrashAlt } from 'react-icons/fa'
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import PropTypes from 'prop-types';
+import { CartContext } from '../../../context/CartContext/CartContext';
 
-const BasketProduct = ({product,RemoveFromCart,cartProducts,SetcartProducts}) => {
+const BasketProduct = ({product}) => {
 
+  const {cartProducts,RemoveFromCart,UpdateProduct} = useContext(CartContext)
 
   const [quantity, setQuantity] = useState(product.qty)
   const [showProduct,setShowProduct] = useState(true)
 
-  // Update selected product quantity
-  const updateProduct = (id,value)=>{
-    SetcartProducts(cartProducts.map(item=> item.id===id? {...product, qty: parseInt(value) }: item))
-}
 
 useEffect(()=>{
-  updateProduct(product.id,quantity)
-
+  UpdateProduct(product.id,quantity)
 },[quantity,showProduct])
 
 const handleOnClick = () =>{
   // animate removing
   setShowProduct(false)
-
   // we need to use set timeout to delay from removing from the dom, and just give the time to fully animate
 // actually remove from the dom
   setTimeout(()=>RemoveFromCart(product.id),500)
-
 }
 
 
@@ -62,10 +57,6 @@ const handleOnClick = () =>{
 
 BasketProduct.propTypes = {
   product:PropTypes.object.isRequired,
-  cartProducts: PropTypes.array.isRequired,
-  RemoveFromCart: PropTypes.func.isRequired,
-  SetcartProducts: PropTypes.func.isRequired
-
 }
 
 export default BasketProduct

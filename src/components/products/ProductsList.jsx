@@ -1,10 +1,8 @@
 import ProductItem from "./ProductItem"
 import { useEffect, useState } from "react"
-import PropTypes from 'prop-types';
 
 
-
-function ProductsList({AddToCart}) {
+function ProductsList() {
 
   const [data, setData] = useState([])
 
@@ -38,16 +36,11 @@ function ProductsList({AddToCart}) {
         promotionalPrice={item.promotionalPrice}
         price={item.price}
         isNew={item.isNew}
-        AddToCart={AddToCart}
 
         />))}
       </>
     </div>
   )
-}
-
-ProductsList.propTypes = {
-  AddToCart: PropTypes.func.isRequired,
 }
 
 export default ProductsList

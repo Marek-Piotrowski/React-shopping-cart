@@ -2,10 +2,11 @@ import { useState, useContext } from "react"
 import { FaPlusCircle } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { CartContext } from "../../context/CartContext/CartContext";
+import {AddToCart} from "../../context/CartContext/CartActions"
 
 function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
 
-  const {AddToCart} = useContext(CartContext)
+  const {dispatch} = useContext(CartContext)
   const [showButton, setShowButton] = useState(false)
   const [product, setProduct] = useState({
     imageUrl,
@@ -23,6 +24,11 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
 
   const handleMouseLeave = e => {
     setShowButton(false)
+  }
+
+  const handleClick = (product)=>{
+    const newProduct = AddToCart(product)
+    dispatch({type: 'ADD_TO_CART' ,payload: newProduct })
   }
 
 
@@ -49,7 +55,7 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
         {promotionalPrice && <div className="promo-price">{promotionalPrice} $</div>}
         <div className="regular-price">{price} $</div>
       </div>
-      {<div className={`${!showButton ? "add-to-cart": "add-to-cart show"}`} onClick={()=>AddToCart(product)}  >
+      {<div className={`${!showButton ? "add-to-cart": "add-to-cart show"}`} onClick={()=>handleClick(product)}  >
         <FaPlusCircle style={{marginRight: "10px"}}/>
         Add to cart
       </div>}

@@ -2,17 +2,19 @@ import { FaTrashAlt } from 'react-icons/fa'
 import React, { useState,useEffect,useContext } from 'react'
 import PropTypes from 'prop-types';
 import { CartContext } from '../../../context/CartContext/CartContext';
+import { RemoveFromCart,UpdateProduct } from '../../../context/CartContext/CartActions';
 
 const BasketProduct = ({product}) => {
 
-  const {cartProducts,RemoveFromCart,UpdateProduct} = useContext(CartContext)
+  const {cartProducts,dispatch} = useContext(CartContext)
 
   const [quantity, setQuantity] = useState(product.qty)
   const [showProduct,setShowProduct] = useState(true)
 
 
 useEffect(()=>{
-  UpdateProduct(product.id,quantity)
+  const data = UpdateProduct(product.id,quantity)
+  dispatch({type: 'UPDATE_PRODUCT_CART' ,payload: data})
 },[quantity,showProduct])
 
 const handleOnClick = () =>{
@@ -20,7 +22,12 @@ const handleOnClick = () =>{
   setShowProduct(false)
   // we need to use set timeout to delay from removing from the dom, and just give the time to fully animate
 // actually remove from the dom
-  setTimeout(()=>RemoveFromCart(product.id),500)
+  const id = RemoveFromCart(product.id)
+
+  setTimeout(()=>dispatch({
+        type: 'REMOVE_FROM_CART',
+        payload: id
+     }),500)
 }
 
 

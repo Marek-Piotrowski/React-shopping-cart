@@ -1,20 +1,21 @@
 import { FaTrashAlt } from 'react-icons/fa'
-import React, { useState,useEffect,useContext } from 'react'
+import React, { useState,useEffect} from 'react'
 import PropTypes from 'prop-types';
-import { CartContext } from '../../../context/CartContext/CartContext';
-import { RemoveFromCart,UpdateProduct } from '../../../context/CartContext/CartActions';
+import { useDispatch } from 'react-redux';
+import {GetId,UpdateProductQty} from '../../../features/cart/cartHelpers'
+import {RemoveFromCart,UpdateProduct} from '../../../features/cart/cartSlice'
 
 const BasketProduct = ({product}) => {
 
-  const {cartProducts,dispatch} = useContext(CartContext)
+  const dispatch = useDispatch()
 
   const [quantity, setQuantity] = useState(product.qty)
   const [showProduct,setShowProduct] = useState(true)
 
 
 useEffect(()=>{
-  const data = UpdateProduct(product.id,quantity)
-  dispatch({type: 'UPDATE_PRODUCT_CART' ,payload: data})
+  const data = UpdateProductQty(product.id,quantity)
+  dispatch(UpdateProduct(data))
 },[quantity,showProduct])
 
 const handleOnClick = () =>{
@@ -22,12 +23,9 @@ const handleOnClick = () =>{
   setShowProduct(false)
   // we need to use set timeout to delay from removing from the dom, and just give the time to fully animate
 // actually remove from the dom
-  const id = RemoveFromCart(product.id)
+  const id = GetId(product.id)
 
-  setTimeout(()=>dispatch({
-        type: 'REMOVE_FROM_CART',
-        payload: id
-     }),500)
+  setTimeout(()=>dispatch(RemoveFromCart(id)),500)
 }
 
 

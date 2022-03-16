@@ -1,12 +1,12 @@
 import cartLogo from '../../assets/supermarket-basket.svg'
 import Cart from './Cart'
 import { useState, useEffect } from 'react'
-import { useContext } from "react"
-import { CartContext } from '../../context/CartContext/CartContext';
+import { useSelector } from 'react-redux'
 
 function CartIcon() {
 
-  const {cartProducts} = useContext(CartContext)
+
+  const {cartProducts} = useSelector(state => state.cart)
   const [showCart, setshowCart] = useState(false)
 
 

@@ -1,13 +1,16 @@
 import React from 'react'
 import { FaTruck } from 'react-icons/fa'
-import { useState,useEffect,useContext } from 'react'
+import { useState,useEffect} from 'react'
 import PropTypes from 'prop-types';
-import { CartContext } from '../../../context/CartContext/CartContext';
+
+import { useSelector } from 'react-redux';
 
 const BasketFooter = ({handleClose}) => {
 
+  const {cartProducts} = useSelector((state) => state.cart)
+
   const [totalPrice,setTotalPrice] = useState(0)
-  const {cartProducts} = useContext(CartContext)
+
 
   useEffect(()=>{
      const sum = cartProducts.reduce((a,v)=> a=a+v.price *v.qty,0).toFixed(2).replace(/[.,]00/, "")

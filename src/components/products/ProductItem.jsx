@@ -1,12 +1,18 @@
-import { useState, useContext } from "react"
+import { useState} from "react"
 import { FaPlusCircle } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import { CartContext } from "../../context/CartContext/CartContext";
-import {AddToCart} from "../../context/CartContext/CartActions"
+// helper
+import { AddId } from "../../features/cart/cartHelpers";
+// Reducer Action
+import {AddToCart} from '../../features/cart/cartSlice'
+//redux hooks
+import { useDispatch } from "react-redux";
 
 function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
 
-  const {dispatch} = useContext(CartContext)
+  const dispatch = useDispatch()
+
+  //const {dispatch} = useContext(CartContext)
   const [showButton, setShowButton] = useState(false)
   const [product, setProduct] = useState({
     imageUrl,
@@ -27,8 +33,8 @@ function ProductItem({isNew,imageUrl,name,type,sensor,price,promotionalPrice}) {
   }
 
   const handleClick = (product)=>{
-    const newProduct = AddToCart(product)
-    dispatch({type: 'ADD_TO_CART' ,payload: newProduct })
+    const newProduct = AddId(product)
+    dispatch(AddToCart(newProduct))
   }
 
 

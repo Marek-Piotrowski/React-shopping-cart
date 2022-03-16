@@ -1,10 +1,9 @@
 import BasketProduct from './BasketProduct'
-import { useContext } from 'react';
-import { CartContext } from '../../../context/CartContext/CartContext';
+import { useSelector } from 'react-redux'
 
 const ProductTable = () => {
 
-  const {cartProducts} = useContext(CartContext)
+  const {cartProducts} = useSelector(state=>state.cart)
 
 
   return (

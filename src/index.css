@@ -95,30 +95,33 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html::-webkit-scrollbar {
   display: none;
 }
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin: 0;
-}
+} */
 
 .container{
   /* Layout Properties */
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 1366px;
-  height: 1275px;
+  /*justify-content: space-between;*/
+  max-width: 1366px;
+  min-height: 1275px;
   margin: 0 auto;
   border: 2px solid;
+  flex-grow: 1;
 
 /* UI Properties */
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
@@ -162,7 +165,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 1366px;
+  max-width: 1366px;
   height: 270px;
   margin-top: auto;
   background: var(--unnamed-color-212121) 0% 0% no-repeat padding-box;
@@ -272,12 +275,13 @@ body {
 
 .productsList-container{
   margin: 0 110px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
-  width: 1140px;
+  max-width: 1140px;
   align-items: center;
   justify-content: center;
+
 }
 
 
@@ -646,3 +650,65 @@ input[type=number] {
   opacity: 1;
 }
 
+/* Tablets 991px and under/canvas 768px*/
+@media(max-width: 991px){
+  .footer-wrapper{
+    margin-left: 0;
+    margin-right: 110px;
+  }
+}
+
+/* Mobile landscape 767px  and under/ canvas 568px*/
+@media(max-width: 764px){
+    .footer-container{
+      flex-direction: column-reverse;
+      height: 100%;
+
+    }
+    .footer-wrapper{
+      margin-left: 110px;
+      margin-right: 110px;
+      width: 100%;
+      align-items: center;
+    }
+    .cart-container{
+      max-width: 478px;
+    }
+
+}
+
+/* Mobile 478px  and under / canvas 320px*/
+@media(max-width: 478px){
+  .cart-container{
+    width: 100%;
+
+  }
+  .breadcrump{
+    display: none;
+  }
+  .header{
+    margin: 0 50px;
+  }
+  .footer-wrapper{
+    margin: 0 30px;
+  }
+  .footer-contact-info{
+    margin-left: 30px;
+  }
+  .basket-product{
+    padding: 3px;
+  }
+  .product-title h4{
+    line-height: 18px;
+    font-size: 12px;
+  }
+  .product-info,.product-sensor{
+    padding: 0;
+  }
+
+}
+@media(max-width: 385px){
+  .basket-product-img{
+    display: none;
+  }
+}
